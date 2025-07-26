@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Joke Generator</title>
+  <link rel="stylesheet" href="index.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="wrapper">
+    <span>😂</span>
+    <p id="joke">Loading a hilarious joke for you...</p>
+    <button id="btn">Get Random Joke</button>
+  </div>
+
+  <script>
+    const jokeContainer = document.getElementById("joke");
+    const btn = document.getElementById("btn");
+    const url = "https://v2.jokeapi.dev/joke/Any?type=single";
+
+    let getJoke = () => {
+      fetch(url)
+        .then((data) => data.json())
+        .then((item) => {
+          jokeContainer.textContent = `${item.joke}`;
+        });
+    };
+
+    btn.addEventListener("click", getJoke);
+    getJoke();
+  </script>
+</body>
+</html>
